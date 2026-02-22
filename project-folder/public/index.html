@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemi i Menaxhimit të Punonjësve - Administrata Publike</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Shtuar Chart.js për grafikët -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-landmark"></i> Sistemi i Menaxhimit të Punonjësve</h1>
+            <p>Administrata Publike dhe Lokale e Republikës së Shqipërisë</p>
+        </header>
+
+        <nav class="main-nav">
+            <button id="btnHome" class="nav-btn active">
+                <i class="fas fa-home"></i> Kryefaqja
+            </button>
+            <button id="btnLocalAdmin" class="nav-btn">
+                <i class="fas fa-map-marker-alt"></i> Administrata Lokale
+            </button>
+            <button id="btnCentralAdmin" class="nav-btn">
+                <i class="fas fa-university"></i> Administrata Qendrore
+            </button>
+        </nav>
+
+        <main id="content">
+            <!-- HOME -->
+            <section id="homeSection" class="content-section active">
+                <h2><i class="fas fa-flag"></i> Mirësevini në Sistemin e Menaxhimit</h2>
+                <div class="welcome-content">
+                    <div class="welcome-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Menaxhimi i Punonjësve</h3>
+                        <p>Shikoni dhe menaxhoni të gjithë punonjësit e administratës publike dhe lokale</p>
+                    </div>
+                    <div class="welcome-card">
+                        <i class="fas fa-building"></i>
+                        <h3>61 Bashkitë</h3>
+                        <p>Aksesoni të dhënat e punonjësve për të gjitha bashkitë e Shqipërisë</p>
+                    </div>
+                    <div class="welcome-card">
+                        <i class="fas fa-landmark"></i>
+                        <h3>13 Ministritë</h3>
+                        <p>Menaxhoni punonjësit e ministrive dhe kryeministrisë</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ADMINISTRATA LOKALE -->
+            <section id="localAdminSection" class="content-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Administrata Lokale - 61 Bashkitë e Shqipërisë</h2>
+                <div class="search-container">
+                    <input type="text" id="searchBashkia" placeholder="Kërko bashki...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="bashkitContainer" class="grid-container"></div>
+            </section>
+
+            <!-- ADMINISTRATA QENDRORE -->
+            <section id="centralAdminSection" class="content-section">
+                <h2><i class="fas fa-university"></i> Administrata Qendrore - 13 Ministritë</h2>
+                <div class="search-container">
+                    <input type="text" id="searchMinistria" placeholder="Kërko ministri...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="ministritContainer" class="grid-container"></div>
+            </section>
+
+            <!-- DETAJET E BASHKISË -->
+            <section id="bashkiaDetailsSection" class="content-section">
+                <div class="section-header">
+                    <button id="backToBashkit" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Kthehu te Bashkitë
+                    </button>
+                    <div class="header-info">
+                        <h2 id="bashkiaTitle"></h2>
+                        <p class="subtitle" id="bashkiaInfo"></p>
+                    </div>
+                </div>
+                <div class="punonjes-header">
+                    <h3>Lista e Punonjësve <span id="punonjesCount" class="count-badge">0</span></h3>
+                    <div class="action-buttons">
+                        <button id="addPunonjesBtn" class="add-btn">
+                            <i class="fas fa-plus"></i> Shto Punonjës
+                        </button>
+                        <button id="importCsvBtn" class="import-btn">
+                            <i class="fas fa-file-csv"></i> Importo CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ========== SIDEBAR I ANALIZAVE TË AVANCUARA (BASHKI) ========== -->
+                <div class="employee-container">
+                    <div class="employee-list-wrapper">
+                        <div id="punonjesitBashkise" class="punonjes-list"></div>
+                    </div>
+                    <div class="filter-sidebar">
+                        <h4><i class="fas fa-chart-line"></i> Analiza të avancuara</h4>
+                        
+                        <!-- Zgjedhja e llojit të analizës – tani me 10 opsione -->
+                        <label for="analysisTypeBashkia">Lloji i analizës:</label>
+                        <select id="analysisTypeBashkia" class="analysis-type-dropdown">
+                        
+                            <option value="demographic">👥 Përmbledhje demografike</option>
+                            <option value="projects">📋 Analiza e projekteve (top 5)</option>
+                            <option value="tenure">⏳ Analiza e vjetërsisë</option>
+                          
+                            <option value="positions">💼 Shpërndarja sipas pozicioneve</option>
+                            <option value="ageDistribution">📊 Shpërndarja e moshës (5 vjet)</option>
+                            <option value="projectCount">📈 Shpërndarja e numrit të projekteve</option>
+                            <option value="positionGender">👫 Pozita vs Gjinia</option>
+                            <option value="startYear">📅 Vitet e fillimit</option>
+                        </select>
+
+                        <!-- Filtrat bazë -->
+                        <div id="basicFiltersBashkia" class="filter-section">
+                            <label for="filterSelectBashkia">Filtro sipas:</label>
+                            <select id="filterSelectBashkia" class="filter-dropdown">
+                                <option value="all">Të gjithë punonjësit</option>
+                                <optgroup label="Gjinia">
+                                    <option value="female">Vetëm femra</option>
+                                    <option value="male">Vetëm meshkuj</option>
+                                </optgroup>
+                                <optgroup label="Gjendja civile">
+                                    <option value="single">Beqarë</option>
+                                    <option value="married">Të martuar</option>
+                                    <option value="divorced">Të divorcuar</option>
+                                    <option value="widow">E ve / I ve</option>
+                                </optgroup>
+                                <optgroup label="Projektet">
+                                    <option value="hasProjects">Me projekte</option>
+                                    <option value="noProjects">Pa projekte</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <!-- Parametra shtesë (dinamikë) -->
+                        <div id="extraParamsBashkia" class="extra-params" style="display: none;"></div>
+
+                        <!-- Butoni i eksportit -->
+                        <button id="exportDataBashkia" class="export-btn">
+                            <i class="fas fa-download"></i> Eksporto CSV
+                        </button>
+
+                        <!-- Kanavacë për grafik -->
+                        <div class="chart-container">
+                            <canvas id="chartBashkia"></canvas>
+                        </div>
+
+                        <!-- Zonë për statistika të detajuara -->
+                        <div id="statsContainerBashkia" class="stats-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DETAJET E MINISTRISË -->
+            <section id="ministriaDetailsSection" class="content-section">
+                <div class="section-header">
+                    <button id="backToMinistrit" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Kthehu te Ministritë
+                    </button>
+                    <div class="header-info">
+                        <h2 id="ministriaTitle"></h2>
+                        <p class="subtitle" id="ministriaInfo"></p>
+                    </div>
+                </div>
+                <div class="punonjes-header">
+                    <h3>Lista e Punonjësve <span id="punonjesMinistriaCount" class="count-badge">0</span></h3>
+                    <div class="action-buttons">
+                        <button id="addPunonjesMinistriaBtn" class="add-btn">
+                            <i class="fas fa-plus"></i> Shto Punonjës
+                        </button>
+                        <button id="importCsvMinistriaBtn" class="import-btn">
+                            <i class="fas fa-file-csv"></i> Importo CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ========== SIDEBAR I ANALIZAVE TË AVANCUARA (MINISTRI) ========== -->
+                <div class="employee-container">
+                    <div class="employee-list-wrapper">
+                        <div id="punonjesitMinistrise" class="punonjes-list"></div>
+                    </div>
+                    <div class="filter-sidebar">
+                        <h4><i class="fas fa-chart-line"></i> Analiza të avancuara</h4>
+                        
+                        <label for="analysisTypeMinistria">Lloji i analizës:</label>
+                        <select id="analysisTypeMinistria" class="analysis-type-dropdown">
+                            <option value="basic">🔍 Filtrat bazë</option>
+                            <option value="demographic">👥 Përmbledhje demografike</option>
+                            <option value="projects">📋 Analiza e projekteve (top 5)</option>
+                            <option value="tenure">⏳ Analiza e vjetërsisë</option>
+                            <option value="combined">🔄 Përmbledhje e kombinuar</option>
+                            <option value="positions">💼 Shpërndarja sipas pozicioneve</option>
+                            <option value="ageDistribution">📊 Shpërndarja e moshës (5 vjet)</option>
+                            <option value="projectCount">📈 Shpërndarja e numrit të projekteve</option>
+                            <option value="positionGender">👫 Pozita vs Gjinia</option>
+                            <option value="startYear">📅 Vitet e fillimit</option>
+                        </select>
+
+                        <div id="basicFiltersMinistria" class="filter-section">
+                            <label for="filterSelectMinistria">Filtro sipas:</label>
+                            <select id="filterSelectMinistria" class="filter-dropdown">
+                                <option value="all">Të gjithë punonjësit</option>
+                                <optgroup label="Gjinia">
+                                    <option value="female">Vetëm femra</option>
+                                    <option value="male">Vetëm meshkuj</option>
+                                </optgroup>
+                                <optgroup label="Gjendja civile">
+                                    <option value="single">Beqarë</option>
+                                    <option value="married">Të martuar</option>
+                                    <option value="divorced">Të divorcuar</option>
+                                    <option value="widow">E ve / I ve</option>
+                                </optgroup>
+                                <optgroup label="Projektet">
+                                    <option value="hasProjects">Me projekte</option>
+                                    <option value="noProjects">Pa projekte</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div id="extraParamsMinistria" class="extra-params" style="display: none;"></div>
+
+                        <button id="exportDataMinistria" class="export-btn">
+                            <i class="fas fa-download"></i> Eksporto CSV
+                        </button>
+
+                        <div class="chart-container">
+                            <canvas id="chartMinistria"></canvas>
+                        </div>
+
+                        <div id="statsContainerMinistria" class="stats-container"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- MODAL: Shto Punonjës Individual -->
+        <div id="addPunonjesModal" class="modal">
+            <div class="modal-content">
+                <h3><i class="fas fa-user-plus"></i> Shto Punonjës të Ri</h3>
+                <form id="punonjesForm">
+                    <input type="hidden" id="institutionId">
+                    <input type="hidden" id="institutionType">
+                    
+                    <div class="form-group">
+                        <label for="emri"><i class="fas fa-user"></i> Emri i Plotë:</label>
+                        <input type="text" id="emri" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pozita"><i class="fas fa-briefcase"></i> Pozita:</label>
+                        <select id="pozita" required>
+                            <option value="">Zgjidhni pozitën</option>
+                            <option value="Drejtor">Drejtor</option>
+                            <option value="Nëndrejtor">Nëndrejtor</option>
+                            <option value="Kryepunonjës">Kryepunonjës</option>
+                            <option value="Punonjës">Punonjës</option>
+                            <option value="Specialist">Specialist</option>
+                            <option value="Asistent">Asistent</option>
+                            <option value="Administrator">Administrator</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefoni"><i class="fas fa-phone"></i> Telefoni:</label>
+                        <input type="tel" id="telefoni" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ditelindja"><i class="fas fa-birthday-cake"></i> Datëlindja:</label>
+                        <input type="date" id="ditelindja">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gjinia"><i class="fas fa-venus-mars"></i> Gjinia:</label>
+                        <select id="gjinia">
+                            <option value="">Zgjidhni gjininë</option>
+                            <option value="Mashkull">Mashkull</option>
+                            <option value="Femër">Femër</option>
+                            <option value="Tjetër">Tjetër</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gjendjaCivile"><i class="fas fa-ring"></i> Gjendja Civile:</label>
+                        <select id="gjendjaCivile">
+                            <option value="">Zgjidhni gjendjen</option>
+                            <option value="Beqar/e">Beqar/e</option>
+                            <option value="Martuar">Martuar</option>
+                            <option value="I divorcuar">I divorcuar</option>
+                            <option value="E divorcuar">E divorcuar</option>
+                            <option value="E ve">E ve</option>
+                            <option value="I ve">I ve</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projektet"><i class="fas fa-project-diagram"></i> Projektet e realizuara:</label>
+                        <textarea id="projektet" rows="2" placeholder="Shembull: Sistemi i taksave, Portali qytetar, Aplikacioni celular"></textarea>
+                        <small>Ndani projektet me presje.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataFillimit"><i class="fas fa-calendar-alt"></i> Data e Fillimit:</label>
+                        <input type="date" id="dataFillimit" required>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i> Ruaj
+                        </button>
+                        <button type="button" id="cancelModalBtn" class="cancel-btn">
+                            <i class="fas fa-times"></i> Anulo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL: Import CSV -->
+        <div id="importCsvModal" class="modal">
+            <div class="modal-content">
+                <h3><i class="fas fa-file-csv"></i> Importo Punonjës nga CSV</h3>
+                <form id="importCsvForm" enctype="multipart/form-data">
+                    <input type="hidden" id="importInstitutionId">
+                    <input type="hidden" id="importInstitutionType">
+                    
+                    <div class="form-group">
+                        <label for="csvFile"><i class="fas fa-upload"></i> Zgjidh skedarin CSV:</label>
+                        <input type="file" id="csvFile" accept=".csv, text/csv" required>
+                        <small>Formati: emri, pozita, email, telefoni, ditelindja, gjinia, gjendja_civile, projektet, dataFillimit (opsionale)</small>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-upload"></i> Ngarko
+                        </button>
+                        <button type="button" id="cancelImportBtn" class="cancel-btn">
+                            <i class="fas fa-times"></i> Anulo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Sistemi i Menaxhimit të Punonjësve - Administrata Publike dhe Lokale</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="analiza.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+</body>
+</html>

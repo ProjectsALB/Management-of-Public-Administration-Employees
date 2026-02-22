@@ -1,0 +1,16 @@
+[
+  {"id": 1, "emri": "Kryeministria", "ministri": "Kryeministri", "numriPunonjesve": 500},
+  {"id": 2, "emri": "Ministria e Financave dhe Ekonomisë", "ministri": "Ministri", "numriPunonjesve": 800},
+  {"id": 3, "emri": "Ministria e Jashtme", "ministri": "Ministri", "numriPunonjesve": 600},
+  {"id": 4, "emri": "Ministria e Brendshme", "ministri": "Ministri", "numriPunonjesve": 1200},
+  {"id": 5, "emri": "Ministria e Mbrojtjes", "ministri": "Ministri", "numriPunonjesve": 1000},
+  {"id": 6, "emri": "Ministria e Drejtësisë", "ministri": "Ministri", "numriPunonjesve": 900},
+  {"id": 7, "emri": "Ministria e Arsimit dhe Sportit", "ministri": "Ministri", "numriPunonjesve": 1100},
+  {"id": 8, "emri": "Ministria e Shëndetësisë dhe Mbrojtjes Sociale", "ministri": "Ministri", "numriPunonjesve": 1300},
+  {"id": 9, "emri": "Ministria e Infrastrukturës dhe Energjisë", "ministri": "Ministri", "numriPunonjesve": 850},
+  {"id": 10, "emri": "Ministria e Kulturës", "ministri": "Ministri", "numriPunonjesve": 400},
+  {"id": 11, "emri": "Ministria e Bujqësisë dhe Zhvillimit Rural", "ministri": "Ministri", "numriPunonjesve": 700},
+  {"id": 12, "emri": "Ministria e Turizmit dhe Mjedisit", "ministri": "Ministri", "numriPunonjesve": 450},
+  {"id": 13, "emri": "Ministria e Puneve të Brendshme", "ministri": "Ministri", "numriPunonjesve": 550},
+  {"id": 14, "emri": "Ministria e Rinisë dhe Fëmijëve", "ministri": "Ministri", "numriPunonjesve": 350}
+]

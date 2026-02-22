@@ -1,0 +1,22 @@
+[
+  {"id": 1, "emri": "Bashkia Tiranë", "qyteti": "Tiranë", "numriPunonjesve": 2500, "popullsia": 912000},
+  {"id": 2, "emri": "Bashkia Durrës", "qyteti": "Durrës", "numriPunonjesve": 1200, "popullsia": 205000},
+  {"id": 3, "emri": "Bashkia Vlorë", "qyteti": "Vlorë", "numriPunonjesve": 900, "popullsia": 130000},
+  {"id": 4, "emri": "Bashkia Shkodër", "qyteti": "Shkodër", "numriPunonjesve": 800, "popullsia": 110000},
+  {"id": 5, "emri": "Bashkia Fier", "qyteti": "Fier", "numriPunonjesve": 850, "popullsia": 120000},
+  {"id": 6, "emri": "Bashkia Korçë", "qyteti": "Korçë", "numriPunonjesve": 750, "popullsia": 75000},
+  {"id": 7, "emri": "Bashkia Elbasan", "qyteti": "Elbasan", "numriPunonjesve": 700, "popullsia": 80000},
+  {"id": 8, "emri": "Bashkia Berat", "qyteti": "Berat", "numriPunonjesve": 600, "popullsia": 60000},
+  {"id": 9, "emri": "Bashkia Lushnjë", "qyteti": "Lushnjë", "numriPunonjesve": 450, "popullsia": 55000},
+  {"id": 10, "emri": "Bashkia Kavajë", "qyteti": "Kavajë", "numriPunonjesve": 400, "popullsia": 40000},
+  {"id": 11, "emri": "Bashkia Gjirokastër", "qyteti": "Gjirokastër", "numriPunonjesve": 350, "popullsia": 30000},
+  {"id": 12, "emri": "Bashkia Pogradec", "qyteti": "Pogradec", "numriPunonjesve": 300, "popullsia": 25000},
+  {"id": 13, "emri": "Bashkia Lezhë", "qyteti": "Lezhë", "numriPunonjesve": 320, "popullsia": 35000},
+  {"id": 14, "emri": "Bashkia Kuçovë", "qyteti": "Kuçovë", "numriPunonjesve": 280, "popullsia": 20000},
+  {"id": 15, "emri": "Bashkia Krujë", "qyteti": "Krujë", "numriPunonjesve": 260, "popullsia": 22000},
+  {"id": 16, "emri": "Bashkia Kukës", "qyteti": "Kukës", "numriPunonjesve": 240, "popullsia": 18000},
+  {"id": 17, "emri": "Bashkia Patos", "qyteti": "Patos", "numriPunonjesve": 220, "popullsia": 22000},
+  {"id": 18, "emri": "Bashkia Sarandë", "qyteti": "Sarandë", "numriPunonjesve": 200, "popullsia": 20000},
+  {"id": 19, "emri": "Bashkia Laç", "qyteti": "Laç", "numriPunonjesve": 180, "popullsia": 25000},
+  {"id": 20, "emri": "Bashkia Burrel", "qyteti": "Burrel", "numriPunonjesve": 160, "popullsia": 15000}
+]
