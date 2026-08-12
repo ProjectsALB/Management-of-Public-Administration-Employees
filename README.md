@@ -52,6 +52,8 @@ It provides complete employee record management, CSV import/export, dynamic sear
 | Configuration  | dotenv                              |
 | Development    | nodemon                             |
 
+## ⚙️ Structure
+
 project-folder/
 ├── config/
 │   ├── db.js
@@ -75,7 +77,6 @@ project-folder/
 ├── server.js
 ├── package.json
 └── .gitignore
-
 
 ## ⚙️ Prerequisites
 
