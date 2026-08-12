@@ -54,6 +54,7 @@ It provides complete employee record management, CSV import/export, dynamic sear
 
 ## ⚙️ Structure
 
+```
 project-folder/
 ├── config/
 │   ├── db.js
@@ -77,6 +78,7 @@ project-folder/
 ├── server.js
 ├── package.json
 └── .gitignore
+```
 
 ## ⚙️ Prerequisites
 
