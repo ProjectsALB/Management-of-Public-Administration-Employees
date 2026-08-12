@@ -1,4 +1,4 @@
-# 🇦🇱 Public Administration Employee Management System
+# Public Administration Employee Management System
 
 **Sistem për menaxhimin e punonjësve të Administratës Publike në Shqipëri**
 
@@ -93,21 +93,22 @@ project-folder/
 
 ### 1. Clone the repository
 
-```bash
+
 git clone <repository-url>
 cd Management-of-Public-Administration-Employees-main/project-folder
 
-2. Install dependencies
+
+### 2. Install dependencies
 
 npm install
 
-3. Configure environment variables
+### 3. Configure environment variables
 
 MONGO_URI=mongodb://localhost:27017/administrata-publike
 # or your MongoDB Atlas connection string
 PORT=3000
 
-4. Seed the database (recommended)
+### 4. Seed the database (recommended)
 node seed.js
 
 This will load:
@@ -116,7 +117,7 @@ All Albanian municipalities (bashki)
 All ministries (ministri)
 Sample employee records
 
-5. Start the server
+### 5. Start the server
 
 # Production
 npm start
@@ -124,7 +125,7 @@ npm start
 # Development (auto-reload)
 npm run dev
 
-📡 API Endpoints
+### 📡 API Endpoints
 
 Method,Endpoint,Description
 GET,/api/bashkit,List all municipalities
@@ -140,7 +141,7 @@ CSV Import Format
 Required columns (case-insensitive):
 emri,pozita,email,telefoni,ditelindja,gjinia,gjendja_civile,projektet,dataFillimit
 
-📊 Data Model Overview
+### 📊 Data Model Overview
 Bashkia
 emri, qyteti, numriPunonjesve, popullsia
 Ministria
@@ -149,7 +150,7 @@ Punonjes
 emri, pozita, email (unique), telefoni, ditelindja, gjinia, gjendjaCivile, projektet, dataFillimit,
 bashkiaId or ministriaId
 
-📈 Analytics Available
+### 📈 Analytics Available
 
 Gender distribution
 Age groups (5-year intervals)
@@ -162,9 +163,9 @@ Position × Gender cross-tabulation
 
 All charts update dynamically based on the selected filters.
 
-📄 License
+### 📄 License
 This project is intended for educational and demonstration purposes.
 You are free to use, modify and distribute it.
 
-🤝 Contributing
+### 🤝 Contributing
 Feel free to open issues or submit pull requests if you want to improve the system (e.g. add employee update endpoint, authentication, role-based access, more advanced analytics, etc.).
