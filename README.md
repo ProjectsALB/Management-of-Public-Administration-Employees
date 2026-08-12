@@ -55,29 +55,32 @@ It provides complete employee record management, CSV import/export, dynamic sear
 ---
 
 ## 📁 Project Structure
+
+```
 project-folder/
 ├── config/
-│   ├── db.js                          # MongoDB connection
-│   ├── analiza.js / analiza.sql       # Analytics scripts (SQL + JS)
-│   ├── databasa.sql                   # Relational schema reference
-│   └── mongodb_advanced_analytics.js  # Advanced MongoDB design notes
+│   ├── db.js
+│   ├── analiza.js
+│   ├── analiza.sql
+│   ├── databasa.sql
+│   └── mongodb_advanced_analytics.js
 ├── data/
-│   ├── bashkit.json                   # Seed data – municipalities
-│   ├── ministrit.json                 # Seed data – ministries
-│   └── punonjesit.json                # Seed data – employees
+│   ├── bashkit.json
+│   ├── ministrit.json
+│   └── punonjesit.json
 ├── models/
-│   ├── Bashkia.js                     # Municipality schema
-│   ├── Ministria.js                   # Ministry schema
-│   └── Punonjes.js                    # Employee schema
+│   ├── Bashkia.js
+│   ├── Ministria.js
+│   └── Punonjes.js
 ├── public/
-│   ├── index.html                     # Main UI
-│   ├── script.js                      # Frontend logic + charts
-│   └── style.css                      # Styles
-├── seed.js                            # Database seeder
-├── server.js                          # Express API + static server
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── seed.js
+├── server.js
 ├── package.json
 └── .gitignore
-
+```
 
 ---
 
