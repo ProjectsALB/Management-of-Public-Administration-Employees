@@ -52,11 +52,6 @@ It provides complete employee record management, CSV import/export, dynamic sear
 | Configuration  | dotenv                              |
 | Development    | nodemon                             |
 
-
-
-## 📁 Project Structure
-
-
 project-folder/
 ├── config/
 │   ├── db.js
@@ -86,8 +81,6 @@ project-folder/
 - **Node.js** ≥ 16.x
 - **MongoDB** (local instance or MongoDB Atlas)
 - **npm** or **yarn**
-
-
 
 ## 🚀 Installation & Setup
 
