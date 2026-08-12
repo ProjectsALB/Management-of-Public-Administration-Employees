@@ -76,6 +76,7 @@ project-folder/
 ├── package.json
 └── .gitignore
 
+
 ## ⚙️ Prerequisites
 
 - **Node.js** ≥ 16.x
